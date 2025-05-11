@@ -129,3 +129,17 @@ ListElem removeTail(ListNode **head)
   current->next = NULL;                // Set the next pointer of the second-to-last node to NULL
   return value;                        // Return the removed value
 }
+
+// Frees the memory allocated for the linked list
+void freeList(ListNode **head)
+{
+  ListNode *current = *head;
+  // Traverse the list and free each node
+  while (current != NULL)
+  {
+    ListNode *temp = current; // Store the current node
+    current = current->next;  // Move to the next node
+    free(temp);               // Free the memory of the current node
+  }
+  *head = NULL; // Set the head to NULL after freeing all nodes
+}

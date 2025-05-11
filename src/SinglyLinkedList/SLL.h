@@ -13,7 +13,7 @@ extern int listSize(ListNode *head);
 extern void printList(ListNode *head);
 
 // Creates a new node for the linked list
-extern ListNode *createListNode(ListNode *head);
+extern ListNode *createListNode(ListElem elem);
 
 // Adds a new element to the head (beginning) of the linked list
 extern bool addHead(ListNode **head, ListElem elem);
@@ -26,3 +26,6 @@ extern ListElem removeHead(ListNode **head);
 
 // Removes and returns the element at the tail (end) of the linked list
 extern ListElem removeTail(ListNode **head);
+
+// Frees the memory allocated for the linked list
+extern void freeList(ListNode **head);
