@@ -34,3 +34,7 @@ vendor/        # If you use Composer (for PHP) or similar dependency managers
 # Ignore any other IDE/editor-specific folders or files
 *.iml         # IntelliJ IDEA
 *.sublime-workspace  # Sublime Text
+
+# Ignore any other files or folders that are not relevant to the project
+*.log
+.vscode/
