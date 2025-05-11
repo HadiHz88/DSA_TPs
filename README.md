@@ -29,7 +29,6 @@ A comprehensive Data Structures and Algorithms (DSA) repository implemented in C
 ```
 DSA_TPs/
 ├── CMakeLists.txt           # Main build configuration
-├── include/                 # Header files
 ├── src/                     # Core data structure implementations
 │   ├── SinglyLinkedList/    # Singly linked list implementation
 │   │   └── SLL.c
@@ -39,8 +38,9 @@ DSA_TPs/
 │   ├── Queue/               # Queue implementations  
 │   │   └── Dynamic/
 │   │       └── QUEUE.c
-│   └── BinaryTree/          # Binary tree implementation
-│       └── BT.c
+│   ├── BinaryTree/          # Binary tree implementation
+│   │   └── BT.c
+│   └── dsa.h                # Header file for all implementations
 ├── TP/                      # Practical exercises
 │   ├── 1_LinkedList_I/      # First linked list exercise
 │   │   ├── solution.c
