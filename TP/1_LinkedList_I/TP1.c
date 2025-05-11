@@ -1,4 +1,4 @@
-#include "../../src/SinglyLinkedList/SLL.h"
+#include "../../src/dsa.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -87,8 +87,6 @@ void removeDuplicates(ListNode *head)
 }
 
 // Test the functions
-// use: gcc ` -I ".\src\SinglyLinkedList" ` ".\TP\1- LinkedList I\TP1.c" ` ".\src\SinglyLinkedList\SLL.c" ` -o TP1.exe
-
 int main()
 {
   // Create a sample linked list

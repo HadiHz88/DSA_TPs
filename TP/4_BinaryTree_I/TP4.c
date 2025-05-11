@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "bt.c"
+#include "../../src/dsa.h"
 
 /*=========================================================================*/
 
-int sumTree(struct Node *root)
+int sumTree(struct BTNode *root)
 {
   if (!root)
     return 0;

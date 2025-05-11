@@ -1,1 +1,36 @@
+# Ignore build directories
+/build/
+/CMakeFiles/
+/CMakeCache.txt
+/Makefile
+/Makefile.user
+/DynBuild/
+
+# Ignore the compiled binaries and executables
 *.exe
+*.out
+*.o
+*.a
+*.so
+*.dll
+*.dSYM/
+
+# Ignore IDE-specific files (for example, Visual Studio, IntelliJ, etc.)
+.vscode/
+.idea/
+
+# Ignore system files
+.DS_Store   # macOS
+Thumbs.db   # Windows
+
+# Ignore temporary files
+*.swp       # Vim
+*.tmp
+
+# Ignore dependency managers' folders (if applicable)
+node_modules/  # If you are using Node.js or frontend frameworks
+vendor/        # If you use Composer (for PHP) or similar dependency managers
+
+# Ignore any other IDE/editor-specific folders or files
+*.iml         # IntelliJ IDEA
+*.sublime-workspace  # Sublime Text
