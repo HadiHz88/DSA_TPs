@@ -32,3 +32,8 @@ add_executable(tp2
     TP/2_LinkedList_II/TP2.c
     ${SOURCE_FILES}
 )
+
+add_executable(tp6
+    TP/6_BinaryTree_I/TP6.c
+    ${SOURCE_FILES}
+)
