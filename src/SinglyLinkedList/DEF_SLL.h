@@ -6,7 +6,7 @@ typedef int ListElem;
 // Define the structure for a node in the singly linked list
 typedef struct ListNode
 {
-  ListElem val;          // The value stored in the node
+  ListElem data;         // The value stored in the node
   struct ListNode *next; // Pointer to the next node in the list
 } ListNode;
 // Each node contains a value and a pointer to the next node,

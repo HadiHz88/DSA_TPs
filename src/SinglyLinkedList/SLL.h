@@ -6,11 +6,8 @@
 // Returns the number of elements in the linked list
 extern int listLength(ListNode *head);
 
-// Returns the size of the linked list (same as length in this implementation)
-extern int listSize(ListNode *head);
-
 // Prints all elements in the linked list in order
-extern void printList(ListNode *head);
+extern void displayList(ListNode *head);
 
 // Creates a new node for the linked list
 extern ListNode *createListNode(ListElem elem);
@@ -20,6 +17,9 @@ extern bool addHead(ListNode **head, ListElem elem);
 
 // Adds a new element to the tail (end) of the linked list
 extern bool addTail(ListNode **head, ListElem elem);
+
+// Inserts a new element into the linked list
+extern bool insert(ListNode **head, ListElem elem);
 
 // Removes and returns the element at the head (beginning) of the linked list
 extern ListElem removeHead(ListNode **head);

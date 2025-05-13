@@ -6,9 +6,7 @@
 ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
 {
   // Create a dummy ListNode to serve as the head of the merged list
-  ListNode *dummy = (ListNode *)malloc(sizeof(ListNode));
-  dummy->val = 0;
-  dummy->next = NULL;
+  ListNode *dummy = createListNode(0);
 
   // Create a pointer to keep track of the last ListNode in the merged list
   ListNode *tail = dummy;
@@ -16,7 +14,7 @@ ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
   // Merge the two lists
   while (l1 != NULL && l2 != NULL)
   {
-    if (l1->val <= l2->val)
+    if (l1->data <= l2->data)
     {
       tail->next = l1;
       l1 = l1->next;
@@ -73,7 +71,7 @@ void removeDuplicates(ListNode *head)
   // Iterate over the list, removing duplicates as we go
   while (curr != NULL && curr->next != NULL)
   {
-    if (curr->val == curr->next->val)
+    if (curr->data == curr->next->data)
     {
       ListNode *temp = curr->next;
       curr->next = curr->next->next;
@@ -86,55 +84,76 @@ void removeDuplicates(ListNode *head)
   }
 }
 
-// Test the functions
+// Add after the existing code
+
 int main()
 {
-  // Create a sample linked list
-  ListNode *head = createListNode(1);
-  head->next = createListNode(2);
-  head->next->next = createListNode(2);
-  head->next->next->next = createListNode(4);
-  head->next->next->next->next = createListNode(4);
-  head->next->next->next->next->next = createListNode(6);
+  // Test mergeTwoLists
+  printf("\n----- Testing mergeTwoLists -----\n");
+  ListNode *list1 = NULL;
+  ListNode *list2 = NULL;
 
-  // Print the original list
-  printf("Original List:\n");
-  printList(head);
+  // Create two sorted lists
+  insert(&list1, 1);
+  insert(&list1, 3);
+  insert(&list1, 5);
+  insert(&list1, 7);
 
-  // Remove duplicates from the list
-  printf("\nList after removing duplicates:\n");
-  removeDuplicates(head);
-  printList(head);
+  insert(&list2, 2);
+  insert(&list2, 4);
+  insert(&list2, 6);
+  insert(&list2, 8);
 
-  // Reverse the list
-  printf("\nReversed List:\n");
-  head = reverseList(head);
-  printList(head);
+  printf("List 1: ");
+  displayList(list1);
+  printf("List 2: ");
+  displayList(list2);
 
-  // Create another sample linked list
-  ListNode *l1 = createListNode(1);
-  l1->next = createListNode(2);
-  l1->next->next = createListNode(4);
-  ListNode *l2 = createListNode(1);
-  l2->next = createListNode(3);
-  l2->next->next = createListNode(4);
+  ListNode *mergedList = mergeTwoLists(list1, list2);
+  printf("Merged list: ");
+  displayList(mergedList);
 
-  // Print the two lists
-  printf("\nList 1:\n");
-  printList(l1);
-  printf("\nList 2:\n");
-  printList(l2);
+  // Test reverseList
+  printf("\n----- Testing reverseList -----\n");
+  ListNode *originalList = NULL;
+  insert(&originalList, 1);
+  insert(&originalList, 2);
+  insert(&originalList, 3);
+  insert(&originalList, 4);
+  insert(&originalList, 5);
 
-  // Merge the two lists
-  ListNode *mergedList = mergeTwoLists(l1, l2);
-  printf("\nMerged List:\n");
-  printList(mergedList);
+  printf("Original list: ");
+  displayList(originalList);
 
-  // Free the memory allocated for the lists
-  printf("\nFreeing memory... ");
-  freeList(&head);
+  ListNode *reversedList = reverseList(originalList);
+  printf("Reversed list: ");
+  displayList(reversedList);
+
+  // Test removeDuplicates
+  printf("\n----- Testing removeDuplicates -----\n");
+  ListNode *duplicatesList = NULL;
+  insert(&duplicatesList, 1);
+  insert(&duplicatesList, 1);
+  insert(&duplicatesList, 2);
+  insert(&duplicatesList, 3);
+  insert(&duplicatesList, 3);
+  insert(&duplicatesList, 3);
+  insert(&duplicatesList, 4);
+  insert(&duplicatesList, 5);
+  insert(&duplicatesList, 5);
+
+  printf("List with duplicates: ");
+  displayList(duplicatesList);
+
+  removeDuplicates(duplicatesList);
+  printf("List after removing duplicates: ");
+  displayList(duplicatesList);
+
+  // Free allocated memory
+  // Note: mergedList uses the nodes from list1 and list2, so don't free list1 and list2
   freeList(&mergedList);
-  printf("Done.\n");
+  freeList(&reversedList);
+  freeList(&duplicatesList);
 
   return 0;
 }

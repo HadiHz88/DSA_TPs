@@ -15,19 +15,13 @@ int listLength(ListNode *head)
   return count; // Return the total count
 }
 
-// Returns the size of the linked list (same as length in this implementation)
-int listSize(ListNode *head)
-{
-  return listLength(head); // Simply call listLength
-}
-
 // Prints all elements in the linked list in order
-void printList(ListNode *head)
+void displayList(ListNode *head)
 {
   ListNode *current = head;
   while (current != NULL)
   {
-    printf("%d", current->val); // Print the value of the current node
+    printf("%d", current->data); // Print the value of the current node
     if (current->next != NULL)
     {
       printf(" -> "); // Print an arrow if there is a next node
@@ -46,7 +40,7 @@ ListNode *createListNode(ListElem elem)
     printf("Memory allocation failed.\n");
     return NULL; // Return NULL if memory allocation fails
   }
-  newNode->val = elem;  // Set the value of the new node
+  newNode->data = elem; // Set the value of the new node
   newNode->next = NULL; // Initialize the next pointer to NULL
   return newNode;       // Return the newly created node
 }
@@ -88,6 +82,12 @@ bool addTail(ListNode **head, ListElem elem)
   return true; // Return true to indicate success
 }
 
+// Inserts a new element into the linked list
+bool insert(ListNode **head, ListElem elem)
+{
+  return addTail(head, elem); // For simplicity, we can use addTail to insert
+}
+
 // Removes and returns the element at the head (beginning) of the linked list
 ListElem removeHead(ListNode **head)
 {
@@ -96,11 +96,11 @@ ListElem removeHead(ListNode **head)
     printf("List is empty. Cannot remove head.\n");
     return -1; // Return -1 to indicate failure (or use a sentinel value)
   }
-  ListNode *temp = *head;     // Store the current head
-  ListElem value = temp->val; // Get the value of the head
-  *head = (*head)->next;      // Update the head to the next node
-  free(temp);                 // Free the memory of the old head
-  return value;               // Return the removed value
+  ListNode *temp = *head;      // Store the current head
+  ListElem value = temp->data; // Get the value of the head
+  *head = (*head)->next;       // Update the head to the next node
+  free(temp);                  // Free the memory of the old head
+  return value;                // Return the removed value
 }
 
 // Removes and returns the element at the tail (end) of the linked list
@@ -114,20 +114,20 @@ ListElem removeTail(ListNode **head)
   if ((*head)->next == NULL)
   {
     // If there is only one node in the list
-    ListElem value = (*head)->val; // Get the value of the head
-    free(*head);                   // Free the memory of the head
-    *head = NULL;                  // Set the head to NULL
-    return value;                  // Return the removed value
+    ListElem value = (*head)->data; // Get the value of the head
+    free(*head);                    // Free the memory of the head
+    *head = NULL;                   // Set the head to NULL
+    return value;                   // Return the removed value
   }
   ListNode *current = *head;
   while (current->next->next != NULL)
   {
     current = current->next; // Traverse to the second-to-last node
   }
-  ListElem value = current->next->val; // Get the value of the last node
-  free(current->next);                 // Free the memory of the last node
-  current->next = NULL;                // Set the next pointer of the second-to-last node to NULL
-  return value;                        // Return the removed value
+  ListElem value = current->next->data; // Get the value of the last node
+  free(current->next);                  // Free the memory of the last node
+  current->next = NULL;                 // Set the next pointer of the second-to-last node to NULL
+  return value;                         // Return the removed value
 }
 
 // Frees the memory allocated for the linked list

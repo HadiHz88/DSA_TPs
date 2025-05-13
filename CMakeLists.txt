@@ -28,7 +28,7 @@ add_executable(tp1
     ${SOURCE_FILES}
 )
 
-add_executable(tp4
-    TP/4_BinaryTree_I/test.c
+add_executable(tp2
+    TP/2_LinkedList_II/TP2.c
     ${SOURCE_FILES}
 )
