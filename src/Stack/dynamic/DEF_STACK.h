@@ -1,5 +1,6 @@
 // Define the type of elements stored in the stack
-typedef int StackElem;
+#include "../../BinaryTree/DEF_BT.h"
+typedef BTNode *StackElem;
 // You can change this to another type (e.g., float, char, or a struct)
 // if you want the stack to store different types of data.
 

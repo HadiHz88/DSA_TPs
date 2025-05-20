@@ -37,7 +37,7 @@ StackElem pop(Stack *stack)
   if (isStackEmpty(stack))
   {
     printf("Stack underflow. Cannot pop.\n");
-    return -1; // Return -1 to indicate failure (or use a sentinel value)
+    return NULL; // Return -1 to indicate failure (or use a sentinel value)
   }
   StackNode *temp = stack->top; // Store the current top node
   StackElem value = temp->val;  // Get the value of the top node
@@ -53,7 +53,7 @@ StackElem peek(Stack *stack)
   if (isStackEmpty(stack))
   {
     printf("Stack is empty. Cannot peek.\n");
-    return -1; // Return -1 to indicate failure (or use a sentinel value)
+    return NULL; // Return -1 to indicate failure (or use a sentinel value)
   }
   return stack->top->val; // Return the value of the top node
 }
