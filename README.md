@@ -35,7 +35,7 @@ DSA_TPs/
 │   ├── Stack/               # Stack implementations
 │   │   └── Dynamic/
 │   │       └── STACK.c
-│   ├── Queue/               # Queue implementations  
+│   ├── Queue/               # Queue implementations
 │   │   └── Dynamic/
 │   │       └── QUEUE.c
 │   ├── BinaryTree/          # Binary tree implementation
@@ -140,8 +140,8 @@ This project follows these best practices:
 
 ## 👨‍💻 Author
 
-**Hadi Hijazi**  
-Computer Science Student at Lebanese University  
+**Hadi Hijazi**
+Computer Science Student at Lebanese University
 Passionate about clean code, data structures, and building useful tools.
 
 ## 📄 License
