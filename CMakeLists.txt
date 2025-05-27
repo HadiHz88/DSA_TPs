@@ -34,10 +34,20 @@ set(SOURCE_FILES
 #     ${SOURCE_FILES}
 # )
 
-add_executable(tp3
-    TP/3_Stack_I/TP3.c
-    ${SOURCE_FILES}
-)
+# add_executable(tp3
+#     TP/3_Stack_I/TP3.c
+#     ${SOURCE_FILES}
+# )
+
+# add_executable(tp4
+#     TP/4_Stack_II/TP4.c
+#     ${SOURCE_FILES}
+# )
+
+# add_executable(tp5
+#     TP/5_Queue_I/TP5.c
+#     ${SOURCE_FILES}
+# )
 
 # add_executable(tp6
 #     TP/6_BinaryTree_I/TP6.c
