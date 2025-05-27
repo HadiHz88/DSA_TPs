@@ -1,10 +1,17 @@
 # 🧩 DSA_TPs
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Language](https://img.shields.io/badge/language-C23-blue.svg)](https://en.cppreference.com/w/c/23)
-[![CMake](https://img.shields.io/badge/build-CMake-brightgreen.svg)](https://cmake.org/)
-
 A comprehensive Data Structures and Algorithms (DSA) repository implemented in C. This project contains core data structure implementations (Linked Lists, Stacks, Queues, Binary Trees) alongside practical "Travaux Pratiques" (TPs) that demonstrate these structures in real-world applications.
+
+> ## ⚠️ Disclaimer
+>
+> **Please Note:** The solutions provided in this repository come from various sources and may not be perfect.
+>
+> - Some solutions are my own implementations, while others come from professors or other students
+> - There might be inconsistencies or errors in certain implementations
+> - Some TPs may lack detailed explanations or may be missing entirely
+> - This project was organized primarily to help fellow students have a centralized reference
+>
+> As a student myself, I put this together to help others navigate these concepts. If you find errors or have suggestions for improvements, please feel free to reach out. Remember, the goal is learning!
 
 ## 📋 Table of Contents
 
