@@ -18,7 +18,7 @@ A comprehensive Data Structures and Algorithms (DSA) repository implemented in C
 - [🧩 DSA\_TPs](#-dsa_tps)
   - [📋 Table of Contents](#-table-of-contents)
   - [📁 Project Structure](#-project-structure)
-  - [🔢 Implemented Data Structures](#-implemented-data-structures)
+  - [🔢 Implemented Topics](#-implemented-topics)
   - [🛠️ Requirements](#️-requirements)
   - [🚀 Building \& Running](#-building--running)
     - [Initial Setup](#initial-setup)
@@ -54,18 +54,26 @@ DSA_TPs/
 │   │   └── helper.c
 │   ├── 2_BinaryTree_I/      # First binary tree exercise
 │   │   └── solution.c
+│   ├── 3_Stack_I/           # Stack exercises
+│   │   └── TP3.c
 │   └── ...                  # Additional exercises
 └── build/                   # Generated build files (not committed)
 ```
 
-## 🔢 Implemented Data Structures
+## 🔢 Implemented Topics
 
-| Structure   | Implementation | Features                                |
-| ----------- | -------------- | --------------------------------------- |
-| Linked List | Singly-linked  | Insertion, deletion, traversal          |
-| Stack       | Dynamic array  | Push, pop, peek operations              |
-| Queue       | Dynamic array  | Enqueue, dequeue operations             |
-| Binary Tree | Pointer-based  | Traversals, search, insertion, deletion |
+This project includes implementations of:
+
+- Singly Linked Lists
+- Stacks (Dynamic and Static)
+- Queues (Dynamic and Static)
+- Binary Trees
+- Binary Search Trees
+- Sorting & Searching Algorithms
+- Heaps
+- Hash Tables
+
+Each structure comes with core operations like insertion, deletion, traversal, and more — all written in C and applied in practical TPs.
 
 ## 🛠️ Requirements
 
@@ -80,7 +88,7 @@ DSA_TPs/
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/DSA_TPs.git
+git clone https://github.com/HadiHz88/DSA_TPs.git
 cd DSA_TPs
 
 # Configure with CMake
