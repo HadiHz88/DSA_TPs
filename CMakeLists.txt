@@ -34,6 +34,11 @@ set(SOURCE_FILES
 #     ${SOURCE_FILES}
 # )
 
+add_executable(tp3
+    TP/3_Stack_I/TP3.c
+    ${SOURCE_FILES}
+)
+
 # add_executable(tp6
 #     TP/6_BinaryTree_I/TP6.c
 #     ${SOURCE_FILES}
@@ -42,9 +47,9 @@ set(SOURCE_FILES
 # add_executable(tp7
 #         TP/7_BinaryTree_II/TP7.c
 #         ${SOURCE_FILES}
-# )   
+# )
 
-add_executable(tp8
-        TP/8_BinarySearchTree_I/TP8.c
-        ${SOURCE_FILES}
-)
+# add_executable(tp8
+#         TP/8_BinarySearchTree_I/TP8.c
+#         ${SOURCE_FILES}
+# )
