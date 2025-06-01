@@ -10,13 +10,13 @@ extern bool selectionSort(int arr[], int size);
 extern bool insertionSort(int arr[], int size);
 
 // Quick Sort - O(n log n) average, O(n²) worst case time, O(log n) space - Divide and conquer algorithm that picks a pivot and partitions array around it
-extern bool QuickSort(int arr[], int size);
+extern bool quickSort(int arr[], int size);
 
 // Utility function for Quick Sort - recursive implementation
-extern void QuickSortUtil(int arr[], int low, int high);
+extern void quickSortUtil(int arr[], int low, int high);
 
 // Partitioning function for Quick Sort - arranges elements around pivot
-extern int Partition(int arr[], int low, int high);
+extern int partition(int arr[], int low, int high);
 
 // Merge Sort - O(n log n) time, O(n) space - Divide and conquer algorithm that divides array in half, sorts, then merges
 bool mergeSort(int arr[], int size);

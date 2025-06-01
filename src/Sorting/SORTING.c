@@ -108,6 +108,75 @@ bool insertionSort(int arr[], int size)
 }
 
 /**
+ * Quick Sort Algorithm
+ * Time Complexity: O(n log n) average and best case, O(n²) worst case (when array is already sorted)
+ * Space Complexity: O(log n) due to recursion stack
+ *
+ * Divides the array into partitions using a pivot element.
+ * Elements smaller than pivot go to the left, larger to the right.
+ * Recursively sorts the partitions until the entire array is sorted.
+ */
+bool quickSort(int arr[], int size)
+{
+    if (arr == NULL || size <= 0)
+    {
+        printf("Error: Invalid input\n");
+        return false;
+    }
+    quickSortUtil(arr, 0, size - 1);
+    return true;
+}
+
+/**
+ * Quick Sort Utility Function - handles the recursive sorting
+ * This function is called recursively to sort the partitions created by the partitioning function.
+ */
+void quickSortUtil(int arr[], int low, int high)
+{
+    int pivot; // Pivot index for partitioning
+
+    // Base case: if low is less than high, continue sorting
+    if (low < high)
+    {
+        pivot = partition(arr, low, high);
+        quickSortUtil(arr, low, pivot - 1);
+        quickSortUtil(arr, pivot + 1, high);
+    }
+}
+
+/**
+ * Partitioning Function for Quick Sort
+ * This function selects a pivot and partitions the array around it.
+ * Elements less than or equal to the pivot are moved to the left, greater ones to the right.
+ */
+int partition(int arr[], int low, int high)
+{
+    int left, right, pivot = arr[low];
+    left = low + 1;
+    right = high;
+    while (left <= right)
+    {
+        while (arr[left] <= pivot && left <= right)
+        {
+            left++; // Find element greater than pivot
+        }
+        while (arr[right] > pivot && left <= right)
+        {
+            right--; // Find element less than or equal to pivot
+        }
+        if (left < right)
+        {
+            swap(&arr[left], &arr[right]); // Swap out-of-place elements
+            left++;
+            right--;
+        }
+    }
+    arr[low] = arr[right]; // Place pivot in its final position
+    arr[right] = pivot;
+    return right; // Return pivot's final position
+}
+
+/**
  * Merge Sort Algorithm
  * Time Complexity: O(n log n) in all cases
  * Space Complexity: O(n) - requires additional array for merging
