@@ -1,6 +1,6 @@
 # 🧩 DSA_TPs
 
-A comprehensive Data Structures and Algorithms (DSA) repository implemented in C. This project contains core data structure implementations (Linked Lists, Stacks, Queues, Binary Trees) alongside practical "Travaux Pratiques" (TPs) that demonstrate these structures in real-world applications.
+A comprehensive Data Structures and Algorithms (DSA) repository implemented in C. This project contains core data structure implementations (Linked Lists, Stacks, Queues, Binary Trees) alongside practical "Travaux Pratiques" (TPs) that demonstrate these structures in real-world applications, as well as exam exercises. It serves as a reference for students and developers looking to understand and apply DSA concepts effectively.
 
 > ## ⚠️ Disclaimer
 >
@@ -57,6 +57,11 @@ DSA_TPs/
 │   ├── 3_Stack_I/           # Stack exercises
 │   │   └── TP3.c
 │   └── ...                  # Additional exercises
+├── Exams/                      # Practical exercises
+│   ├── Session/      # First linked list exercise
+│   │   ├── solution.c
+│   │   └── solution.txt
+│   └── ...
 └── build/                   # Generated build files (not committed)
 ```
 
@@ -72,6 +77,7 @@ This project includes implementations of:
 - Sorting & Searching Algorithms
 - Heaps
 - Hash Tables
+- Graphs (Adjacency List and Matrix)
 
 Each structure comes with core operations like insertion, deletion, traversal, and more — all written in C and applied in practical TPs.
 

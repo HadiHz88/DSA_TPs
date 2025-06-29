@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Project name
-project(LU-I2206)
+project(DSA_TPs)
 
 # Set the C standard
 set(CMAKE_C_STANDARD 23)
@@ -63,3 +63,8 @@ set(SOURCE_FILES
 #         TP/8_BinarySearchTree_I/TP8.c
 #         ${SOURCE_FILES}
 # )
+
+add_executable(sol
+    Exams/24-25-1st/sol.c
+    ${SOURCE_FILES}
+)
