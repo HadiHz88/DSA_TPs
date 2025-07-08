@@ -308,54 +308,196 @@ void addEdge(Graph *g, int u, int v, int w)
 }
 
 // Test all the functions
-int main()
+
+// Helper functions
+// Print array
+void printArray(int arr[], int size)
 {
-    printf("Exercise 1:\n");
-    int ex1_arr1[] = {2, 4, 8, 10, 12, 14};
-    int ex1_size1 = sizeof(ex1_arr1) / sizeof(ex1_arr1[0]);
-    findMissingMembers(ex1_arr1, ex1_size1);
-    int ex1_arr2[] = {1, 11, 16, 21, 36, 41};
-    int ex1_size2 = sizeof(ex1_arr2) / sizeof(ex1_arr2[0]);
-    findMissingMembers(ex1_arr2, ex1_size2);
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
 
-    printf("\n#############\n\n");
-
-    printf("Exercise 2:\n");
-    BSTNode *root = buildBSTFromArray(
-        (int[]){20, 8, 22, 4, 12, 10, 14}, 7);
-    printf("Original BST: ");
-    inOrderBST(root);
-    root = deleteLeafNodes(root);
-    printf("\nBST after deleting leaf nodes: ");
-    inOrderBST(root);
-
-    printf("\n\n#############\n\n");
-
-    printf("Exercise 3:\n");
-    STBSTNode *stbstRoot = NULL;
-    stbstRoot = insert_into_single_threaded_bst(stbstRoot, 10);
-    stbstRoot = insert_into_single_threaded_bst(stbstRoot, 5);
-    stbstRoot = insert_into_single_threaded_bst(stbstRoot, 15);
-    stbstRoot = insert_into_single_threaded_bst(stbstRoot, 12);
-    stbstRoot = insert_into_single_threaded_bst(stbstRoot, 7);
-
-    printf("In-order traversal of Single Threaded BST: ");
-    inorder_traverse_single_threaded_bst(stbstRoot);
-
-    printf("\n\n#############\n\n");
-
-    printf("Exercise 4:\n");
-    Graph *g = createGraph(4);
-    addEdge(g, 0, 1, 4);
-    addEdge(g, 1, 2, 3);
-    addEdge(g, 2, 0, 2);
-    addEdge(g, 3, 1, 5);
-
-    int *result = calculateDegreeWeightDifferences(g);
+// Free graph memory
+void freeGraph(Graph *g)
+{
     for (int i = 0; i < g->numVertices; i++)
     {
-        printf("Node %d: %d\n", i, result[i]);
+        free(g->adjMatrix[i]);
     }
+    free(g->adjMatrix);
+    free(g);
+}
+
+int main()
+{
+    printf("=== Testing DSA Functions ===\n\n");
+
+    // Test 1: Find Missing Members in Arithmetic Progression
+    printf("1. Testing Missing Members in Arithmetic Progression:\n");
+
+    // Test case 1: [2, 4, 8, 10, 12, 14] - missing 6
+    int arr1[] = {2, 4, 8, 10, 12, 14};
+    int size1 = sizeof(arr1) / sizeof(arr1[0]);
+    printf("Input array: ");
+    printArray(arr1, size1);
+    printf("Missing elements: ");
+    findMissingMembers(arr1, size1);
+
+    // Test case 2: [1, 11, 16, 21, 36, 41] - missing 6, 26, 31
+    int arr2[] = {1, 11, 16, 21, 36, 41};
+    int size2 = sizeof(arr2) / sizeof(arr2[0]);
+    printf("\nInput array: ");
+    printArray(arr2, size2);
+    printf("Missing elements: ");
+    findMissingMembers(arr2, size2);
+
+    // Test case 3: Complete progression - no missing elements
+    int arr3[] = {5, 10, 15, 20, 25};
+    int size3 = sizeof(arr3) / sizeof(arr3[0]);
+    printf("\nInput array: ");
+    printArray(arr3, size3);
+    printf("Missing elements: ");
+    findMissingMembers(arr3, size3);
+
+    // Test 2: Delete Leaf Nodes from BST
+    printf("\n2. Testing Delete Leaf Nodes from BST:\n");
+
+    // Create BST:
+    //      20
+    //     /  \
+    //    8    22
+    //   / \
+    //  4  12
+    //     / \
+    //    10 14
+    BSTNode *root = createBSTNode(20);
+    root->left = createBSTNode(8);
+    root->right = createBSTNode(22);
+    root->left->left = createBSTNode(4);
+    root->left->right = createBSTNode(12);
+    root->left->right->left = createBSTNode(10);
+    root->left->right->right = createBSTNode(14);
+
+    printf("Original BST (inorder): ");
+    inOrderBST(root);
+    printf("\n");
+
+    // Delete leaf nodes
+    root = deleteLeafNodes(root);
+
+    printf("After deleting leaf nodes (inorder): ");
+    inOrderBST(root);
+    printf("\n");
+
+    // Delete leaf nodes again to show progressive deletion
+    printf("After deleting leaf nodes again (inorder): ");
+    root = deleteLeafNodes(root);
+    inOrderBST(root);
+    printf("\n");
+
+    // Test 3: Single Threaded BST
+    printf("\n3. Testing Single Threaded BST:\n");
+
+    // Create STBST:
+    //       20
+    //      /  \
+    //     10   30
+    //    /      \
+    //   5        40
+    STBSTNode *stRoot = createSTBSTNode(20);
+    stRoot = insert_into_single_threaded_bst(stRoot, 10);
+    stRoot = insert_into_single_threaded_bst(stRoot, 30);
+    stRoot = insert_into_single_threaded_bst(stRoot, 5);
+    stRoot = insert_into_single_threaded_bst(stRoot, 40);
+    stRoot = insert_into_single_threaded_bst(stRoot, 25);
+    stRoot = insert_into_single_threaded_bst(stRoot, 35);
+
+    printf("Single Threaded BST (inorder traversal): ");
+    inorder_traverse_single_threaded_bst(stRoot);
+    printf("\n");
+
+    // Test insertion of duplicate value
+    printf("Inserting duplicate value 20: ");
+    stRoot = insert_into_single_threaded_bst(stRoot, 20);
+    inorder_traverse_single_threaded_bst(stRoot);
+    printf("\n");
+
+    // Test 4: Graph Degree Weight Differences
+    printf("\n4. Testing Graph Degree Weight Differences:\n");
+
+    // Create a directed weighted graph with 4 vertices
+    Graph *g = createGraph(4);
+
+    // Add edges: (from, to, weight)
+    addEdge(g, 0, 1, 5); // 0 -> 1 with weight 5
+    addEdge(g, 0, 2, 3); // 0 -> 2 with weight 3
+    addEdge(g, 1, 2, 2); // 1 -> 2 with weight 2
+    addEdge(g, 1, 3, 4); // 1 -> 3 with weight 4
+    addEdge(g, 2, 3, 1); // 2 -> 3 with weight 1
+    addEdge(g, 3, 0, 6); // 3 -> 0 with weight 6
+
+    printf("Graph adjacency matrix:\n");
+    for (int i = 0; i < g->numVertices; i++)
+    {
+        for (int j = 0; j < g->numVertices; j++)
+        {
+            printf("%d ", g->adjMatrix[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Calculate degree weight differences
+    int *differences = calculateDegreeWeightDifferences(g);
+
+    printf("\nDegree weight differences for each node:\n");
+    for (int i = 0; i < g->numVertices; i++)
+    {
+        int outSum = 0, inSum = 0;
+
+        // Calculate outdegree sum
+        for (int j = 0; j < g->numVertices; j++)
+        {
+            outSum += g->adjMatrix[i][j];
+        }
+
+        // Calculate indegree sum
+        for (int j = 0; j < g->numVertices; j++)
+        {
+            inSum += g->adjMatrix[j][i];
+        }
+
+        printf("Node %d: OutSum=%d, InSum=%d, |Difference|=%d\n",
+               i, outSum, inSum, differences[i]);
+    }
+
+    // Test 5: Edge cases
+    printf("\n5. Testing Edge Cases:\n");
+
+    // Empty STBST
+    STBSTNode *emptyTree = NULL;
+    printf("Empty STBST traversal: ");
+    inorder_traverse_single_threaded_bst(emptyTree);
+    printf("(empty)\n");
+
+    // Single node STBST
+    STBSTNode *singleNode = createSTBSTNode(42);
+    printf("Single node STBST traversal: ");
+    inorder_traverse_single_threaded_bst(singleNode);
+    printf("\n");
+
+    // Small arithmetic progression
+    int smallArr[] = {1, 3};
+    printf("Small array [1, 3] missing elements: ");
+    findMissingMembers(smallArr, 2);
+
+    // Cleanup
+    free(differences);
+    freeGraph(g);
+
+    printf("\n=== All tests completed! ===\n");
 
     return 0;
 }
