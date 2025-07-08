@@ -64,12 +64,17 @@ set(SOURCE_FILES
 #         ${SOURCE_FILES}
 # )
 
-add_executable(sol
-    Exams/24-25-1st/sol.c
-    ${SOURCE_FILES}
-)
+# add_executable(sol
+#     Exams/24-25-1st/sol.c
+#     ${SOURCE_FILES}
+# )
 
 # add_executable(sol
 #     Exams/23-24-1st/sol.c
 #     ${SOURCE_FILES}
 # )
+
+add_executable(sol
+    Exams/22-23-1st/sol.c
+    ${SOURCE_FILES}
+)
