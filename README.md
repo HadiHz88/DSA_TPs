@@ -98,7 +98,7 @@ git clone https://github.com/HadiHz88/DSA_TPs.git
 cd DSA_TPs
 
 # Configure with CMake
-cmake -S . -B build
+cmake -S . -B build -G "MinGW Makefiles"
 
 # Build all targets
 cmake --build build
