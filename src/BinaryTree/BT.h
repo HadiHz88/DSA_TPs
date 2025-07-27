@@ -13,7 +13,7 @@ extern void insertBTNode(BTNode **root, BTElem data);
 extern BTNode *buildTreeFromArray(BTElem *arr, int size);
 
 // search for a node in the binary tree
-extern bool searchBTNode(BTNode *root, BTElem data);
+extern BTNode *searchBTNode(BTNode *root, BTElem data);
 
 // print the binary using the in-order traversal
 extern void inOrder(BTNode *root);
@@ -25,7 +25,7 @@ extern void preOrder(BTNode *root);
 extern void postOrder(BTNode *root);
 
 // Delete a node from the binary tree
-extern BTNode *deleteBTNode(BTNode *root, BTElem data);
+extern BTNode *deleteBTNode(BTNode **root, BTElem data);
 
 // free the binary tree
 extern void freeBinaryTree(BTNode *root);

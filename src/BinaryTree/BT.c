@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "BT.h"
-#include "./Queue/dynamic/Queue.h"
+#include "../Queue/dynamic/Queue.h"
 
 // Create a binary tree node
 BTNode *createBTNode(BTElem data)
@@ -82,31 +82,6 @@ BTNode *buildTreeFromArray(BTElem *arr, int size)
   return buildTreeFromArrayUtil(arr, size, 0);
 }
 
-// Search for a node in the binary tree
-bool searchBTNode(BTNode *root, BTElem data)
-{
-  // Base case: root is NULL or data is found
-  if (root == NULL)
-  {
-    return false;
-  }
-
-  if (root->data == data)
-  {
-    return true;
-  }
-
-  // Recur down the appropriate subtree
-  if (data < root->data)
-  {
-    return searchBTNode(root->left, data);
-  }
-  else
-  {
-    return searchBTNode(root->right, data);
-  }
-}
-
 // Print the binary tree using in-order traversal
 void inOrder(BTNode *root)
 {
@@ -146,66 +121,133 @@ void postOrder(BTNode *root)
   printf("%d ", root->data);
 }
 
-// Find the node with minimum value in a given BST
-static BTNode *findMinValueNode(BTNode *node)
+// Find a node with the given data in the binary tree
+BTNode *searchBTNode(BTNode *root, BTElem data)
 {
-  BTNode *current = node;
-
-  // Find the leftmost leaf
-  while (current && current->left != NULL)
+  // Base case: root is NULL
+  if (root == NULL)
   {
-    current = current->left;
+    return NULL;
   }
 
-  return current;
-}
-
-// Delete a node from the binary tree
-BTNode *deleteBTNode(BTNode *root, BTElem data)
-{
-  // Base case
-  if (root == NULL)
+  // Check if current node contains the data
+  if (root->data == data)
   {
     return root;
   }
 
-  // Recur down the tree
-  if (data < root->data)
+  // Search in left subtree
+  BTNode *leftResult = findBTNode(root->left, data);
+  if (leftResult != NULL)
   {
-    root->left = deleteBTNode(root->left, data);
+    return leftResult;
   }
-  else if (data > root->data)
+
+  // Search in right subtree
+  return findBTNode(root->right, data);
+}
+
+BTNode *deleteDeepestNodeHelper(BTNode **root, BTNode *delNode)
+{
+
+  BTNode *deletedNode;
+
+  if (*root == delNode)
   {
-    root->right = deleteBTNode(root->right, data);
+    deletedNode = *root;
+    *root = NULL; // If the root is the node to be deleted, set it to NULL
+    free(delNode);
+    return deletedNode;
   }
-  // If data is same as root's data, then this is the node to be deleted
-  else
+
+  Queue q;
+  initQueue(&q);
+  enqueue(&q, *root);
+
+  BTNode *temp;
+
+  while (!isQueueEmpty(&q))
   {
-    // Node with only one child or no child
-    if (root->left == NULL)
+    temp = peekFront(&q);
+    dequeue(&q);
+
+    if (temp->right != NULL)
     {
-      BTNode *temp = root->right;
-      free(root);
-      return temp;
+
+      if (temp->right == delNode)
+      {
+        deletedNode = temp->right;
+        free(temp->right);
+        temp->right = NULL; // Set the right child to NULL
+        return deletedNode;
+      }
+      else
+      {
+        enqueue(&q, temp->right);
+      }
     }
-    else if (root->right == NULL)
+
+    if (temp->left != NULL)
     {
-      BTNode *temp = root->left;
-      free(root);
-      return temp;
+      if (temp->left == delNode)
+      {
+        deletedNode = temp->left;
+        free(temp->left);
+        temp->left = NULL; // Set the left child to NULL
+        return deletedNode;
+      }
+      else
+      {
+        enqueue(&q, temp->left);
+      }
+    }
+  }
+}
+
+// Delete a node from the binary tree
+BTNode *deleteBTNode(BTNode **root, BTElem data)
+{
+
+  if (*root == NULL)
+  {
+    return NULL; // Node not found
+  }
+
+  Queue q;
+  initQueue(&q);
+
+  BTNode *tmp;
+  BTNode *foundNode = NULL;
+
+  enqueue(&q, *root);
+
+  while (!isQueueEmpty(&q))
+  {
+    tmp = peekFront(&q);
+
+    dequeue(&q);
+
+    if (tmp->data == data)
+    {
+      foundNode = tmp; // Node to be deleted found
     }
 
-    // Node with two children
-    // Get the inorder successor (smallest in the right subtree)
-    BTNode *temp = findMinValueNode(root->right);
+    if (tmp->left != NULL)
+    {
+      enqueue(&q, tmp->left);
+    }
 
-    // Copy the inorder successor's data to this node
-    root->data = temp->data;
-
-    // Delete the inorder successor
-    root->right = deleteBTNode(root->right, temp->data);
+    if (tmp->right != NULL)
+    {
+      enqueue(&q, tmp->right);
+    }
   }
-  return root;
+
+  int lastNodeData = tmp->data; // Store the last node's data
+
+  foundNode->data = lastNodeData; // Replace found node's data with last node's data
+  // Now delete the last node
+  return deleteDeepestNodeHelper(root, tmp);
 }
 
 // Free the binary tree
