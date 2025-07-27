@@ -7,7 +7,7 @@
 extern BTNode *createBTNode(BTElem data);
 
 // Insert a node into the binary tree
-extern BTNode *insertBTNode(BTNode *root, BTElem data);
+extern void insertBTNode(BTNode **root, BTElem data);
 
 // Build a binary tree from an array
 extern BTNode *buildTreeFromArray(BTElem *arr, int size);

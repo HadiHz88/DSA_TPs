@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "BT.h"
+#include "./Queue/dynamic/Queue.h"
 
 // Create a binary tree node
 BTNode *createBTNode(BTElem data)
@@ -19,26 +20,43 @@ BTNode *createBTNode(BTElem data)
 }
 
 // Insert a node into the binary tree
-BTNode *insertBTNode(BTNode *root, BTElem data)
+void insertBTNode(BTNode **root, BTElem data)
 {
-  // If the tree is empty, create a new node
-  if (root == NULL)
+  if (*root == NULL)
   {
-    return createBTNode(data);
+    *root = createBTNode(data);
+    return;
   }
 
-  // Otherwise, recur down the tree
-  if (data < root->data)
-  {
-    root->left = insertBTNode(root->left, data);
-  }
-  else if (data > root->data)
-  {
-    root->right = insertBTNode(root->right, data);
-  }
+  Queue q;
+  initQueue(&q);
+  enqueue(&q, *root);
 
-  // Return the unchanged node pointer
-  return root;
+  while (!isQueueEmpty(&q))
+  {
+    BTNode *current = peekFront(&q);
+    dequeue(&q);
+
+    if (current->left == NULL)
+    {
+      current->left = createBTNode(data);
+      return;
+    }
+    else
+    {
+      enqueue(&q, current->left);
+    }
+
+    if (current->right == NULL)
+    {
+      current->right = createBTNode(data);
+      return;
+    }
+    else
+    {
+      enqueue(&q, current->right);
+    }
+  }
 }
 
 // Build a binary tree from an array
